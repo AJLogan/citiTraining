@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		Employee emp = new Employee();
 		getInfo(emp);
-		
+
 		Employee emp2 = new Employee();
 		getInfo(emp2);
 		
@@ -14,8 +14,25 @@ public class Main {
 		System.out.println("Name: " + emp2.name + " | Salary: " + emp2.salary);
 		
 		System.out.println("Average Salary: " + getAverageSalary(emp, emp2));
+		
 		System.out.println("Max Salary: " + getMaxSalary(emp, emp2));
+		
 		System.out.println("Min Salary: " + getMinSalary(emp, emp2));
+		
+/*
+ * 		String Builder Usage
+ * 		Only makes one object, rather than multiple instances of strings 
+ * 		floating about the place
+ */
+		StringBuilder sb = new StringBuilder();
+		sb.append(emp.name);
+		sb.append(" : $");
+		sb.append(emp.salary);
+		sb.append("\n");
+		sb.append(emp2.name);
+		sb.append(" : $");
+		sb.append(emp2.salary);
+		System.out.println(sb.toString());
 		
 	}
 
@@ -32,8 +49,8 @@ public class Main {
 		return average;
 	}
 	
-	private static double getMaxSalary(Employee emp1, Employee emp2){
-		return Math.max(emp1.salary, emp2.salary);
+	private static double getMaxSalary(Employee x, Employee y){
+		return Math.max(x.salary, y.salary);
 	}
 	
 	private static double getMinSalary(Employee emp1, Employee emp2) {
