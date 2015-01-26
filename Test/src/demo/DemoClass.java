@@ -1,6 +1,8 @@
 package demo;
 import java.util.Scanner;
 
+import basics.MathsOps;
+
 public class DemoClass {
 
 	public static void main(String[] args) {
@@ -11,6 +13,8 @@ public class DemoClass {
 		System.out.println(n + " squared is " + res);
 		sc.close();
 		double dblRes = Math.sqrt(n);
+		System.out.println(dblRes);
+		dblRes = MathsOps.factorial(n);
 		System.out.println(dblRes);
 	}
 }
