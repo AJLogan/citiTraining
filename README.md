@@ -1,2 +1,4 @@
 # citiTraining
-Citi Trainig Materials
+Citi Training Materials
+
+Based on the slides under Java Foundation Course
