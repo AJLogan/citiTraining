@@ -12,4 +12,8 @@ public class SavingsAccount extends BankAccount {
 				"Savings Account... \n Account Holder (%s) has an Account %s with a balance %.2f", super.getAccountHolder(), super.getAccountNumber(), super.getBalance());
 		return str;
 	}
+	
+	public void saverBonus(double bonus){
+		deposit(bonus);
+	}
 }
