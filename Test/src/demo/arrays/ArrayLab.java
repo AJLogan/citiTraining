@@ -25,7 +25,7 @@ public class ArrayLab {
 			}
 		}
 		System.out.println("Account with largest balance...");
-		System.out.println(arr[index].getAccountHolder() + " " + arr[index].getBalance());
+		System.out.println(String.format("%s : Balance %.2f", arr[index].getAccountHolder(), arr[index].getBalance()));
 	}
 	
 	public static void getAverageBalance(BankAccount[] arr){
@@ -36,6 +36,6 @@ public class ArrayLab {
 			}	
 		average = bal / arr.length;
 		System.out.println("Average Balance...");
-		System.out.println(average);
+		System.out.println(String.format("%.2f", average));
 	}
 }
