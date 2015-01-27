@@ -74,8 +74,8 @@ public class BankAccount {
 
 	{
 		// Initialization block
-		System.out.println("Account Created");
-		BankAccount.setInterest(0.5);
-		System.out.println("Interest Rate Set at " + BankAccount.getInterest());
+//		System.out.println("Account Created");
+//		BankAccount.setInterest(0.5);
+//		System.out.println("Interest Rate Set at " + BankAccount.getInterest());
 	}
 }
