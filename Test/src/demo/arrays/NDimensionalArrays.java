@@ -7,8 +7,10 @@ public class NDimensionalArrays {
 	}
 
 	private static void demo2DArray() {
-		int[][] tables = { { 1, 2, 3, 4, 5, 6 },
-				{ 2, 4, 6, 8, 10, 12, 14, 16, 18 }, { 3, 6, 9, 12, 15, 18 } };
+		int[][] tables = { 	{ 1, 2, 3, 4, 5, 6 },
+							{ 2, 4, 6, 8, 10, 12, 14, 16, 18 }, 
+							{ 3, 6, 9, 12, 15, 18 } 
+							};
 		// Using a double for loop, output the array
 		for (int i = 0; i < tables.length; i++) {
 			for (int j = 0; j < tables[i].length; j++) {
@@ -17,5 +19,4 @@ public class NDimensionalArrays {
 			System.out.println();
 		}
 	}
-
 }

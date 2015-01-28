@@ -37,6 +37,10 @@ public class BankAccount {
 	public double getBalance() {
 		return this.balance;
 	}
+	
+	public void setBalance(double amount) {
+		this.balance = amount;
+	}
 
 	public void deposit(double amount) {
 		this.balance = balance + amount;
@@ -67,7 +71,7 @@ public class BankAccount {
 	@Override
 	public String toString() {
 		String str = String.format(
-				"Account Holder (%s) has an Account %s with a balance %.2f",
+				"Standard Account... \nAccount Holder (%s) has an Account %s with a balance %.2f",
 				accountHolder, accountNumber, balance);
 		return str;
 	}
