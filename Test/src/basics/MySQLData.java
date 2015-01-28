@@ -20,9 +20,9 @@ public class MySQLData extends DatabaseOperations {
 					.getConnection("jdbc:mysql://localhost:8889/classfiles?"
 							+ "user=root&password=root");
 			st = cn.createStatement();
-			rs = st.executeQuery("select * from product where product_category_code = '" + category + "'");
+			rs = st.executeQuery("select description, price from product where product_category_code in (select product_category_code from product_category where product_category_name = '" + category + "' );");
 			while (rs.next()) {
-				System.out.println(rs.getString("description") + " "
+				System.out.println(rs.getString("description") + "	|	"
 						+ rs.getDouble("price"));
 			}
 		} catch (Exception e) {
