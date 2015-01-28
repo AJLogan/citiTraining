@@ -36,34 +36,34 @@ public class CurrentAccount extends BankAccount {
 		double funds = balance + overdraft;
 		return funds;
 	}
-	
-	public boolean hasOverdraft(){
-		if (overdraft > 0){
+
+	public boolean hasOverdraft() {
+		if (overdraft > 0) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
-	public void disableOverdraft(){
+
+	public void disableOverdraft() {
 		this.setOverdraft(0);
-		if (this.hasOverdraft() == false){
-			System.out.println("Overdraft has been removed for account: " + this.getAccountNumber());
+		if (this.hasOverdraft() == false) {
+			System.out.println("Overdraft has been removed for account: "
+					+ this.getAccountNumber());
+		} else {
+			System.out.println("Overdraft has not been removed for account: "
+					+ this.getAccountNumber());
+			System.out.println("Overdraft limit for this account is: "
+					+ this.getOverdraft());
 		}
-		else {
-			System.out.println("Overdraft has not been removed for account: " + this.getAccountNumber());
-			System.out.println("Overdraft limit for this account is: " + this.getOverdraft());
-		}
-		
-		
+
 	}
 
 	@Override
 	public String toString() {
 		String str = String
-				.format("Current Account... \n Account Holder: (%s) \n " + "Balance: %.2f \n"
-						+ "Available Funds: %.2f",
+				.format("Current Account... \n Account Holder: (%s) \n "
+						+ "Balance: %.2f \n" + "Available Funds: %.2f",
 						super.getAccountHolder(),
 						super.getBalance(),
 						this.getAvailableFunds(super.getBalance(),
