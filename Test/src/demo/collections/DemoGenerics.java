@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class DemoGenerics {
 
 	public static void main(String[] args) {
-		ArrayList rl = new ArrayList();
+		ArrayList<String> rl = new ArrayList<String>();
 		rl.add("Demo");
-		String first = (String) rl.get(0);
+		String first = rl.get(0);
 		System.out.println(first);
 		
 		ArrayList<String> words = new ArrayList<String>();
