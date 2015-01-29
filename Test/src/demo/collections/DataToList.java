@@ -1,5 +1,6 @@
 package demo.collections;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,18 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basics.BankAccount;
+import demo.fileIO.ListToFile;
 
 public class DataToList {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		List<BankAccount> accounts = new ArrayList<BankAccount>();
-		getAccountsFromDB(accounts, "s");
-		for (int i = 0; i < accounts.size(); i++) {
-			System.out.println(accounts.get(i));
-		}
+		ListToFile.writeToFile((getAccountsFromDB(accounts, "s")));
+//		for (int i = 0; i < accounts.size(); i++) {
+//			System.out.println(accounts.get(i));
+//		}
 	}
 
-	public static void getAccountsFromDB(List<BankAccount> accounts, String pay_type_code) throws SQLException {
+	public static List<BankAccount> getAccountsFromDB(List<BankAccount> accounts, String pay_type_code) throws SQLException {
 		Connection cn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -50,6 +52,7 @@ public class DataToList {
 			if (cn != null)
 				cn.close();
 		}
+		return accounts;
 
 	}
 
