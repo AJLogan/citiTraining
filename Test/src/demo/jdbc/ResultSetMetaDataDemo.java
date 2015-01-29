@@ -1,19 +1,20 @@
 package demo.jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ResultSetMetaDataDemo {
 
     public static void main(String[] args) {
         
         // Set up a default JDBC driver and database name.
-        String jdbcDriver = "org.apache.derby.jdbc.ClientDriver";
-        String databaseUri = "jdbc:derby://localhost:1527/C:/JavaDev/Databases/MyDatabase";
-
-        if (args.length == 2) {
-            jdbcDriver = args[0];
-            databaseUri = args[1];
-        }
+    	String jdbcDriver = "com.mysql.jdbc.Driver";
+        String databaseUri = "jdbc:mysql://localhost:8889/javaDemoDB?"
+							+ "user=root&password=root";
 
         // Load JDBC driver.
         try {
@@ -34,7 +35,7 @@ public class ResultSetMetaDataDemo {
         try {
             Statement st = cn.createStatement();
 
-            ResultSet rsEmps = st.executeQuery("SELECT * FROM MySchema.Employees");
+            ResultSet rsEmps = st.executeQuery("SELECT * FROM Employees");
             ResultSetMetaData rsmd = rsEmps.getMetaData();
 
             int columnCount = rsmd.getColumnCount();

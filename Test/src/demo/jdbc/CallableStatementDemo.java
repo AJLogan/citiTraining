@@ -1,19 +1,20 @@
 package demo.jdbc;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Types;
 
 public class CallableStatementDemo {
 
     public static void main(String[] args) {
         
         // Set up a default JDBC driver and database name.
-        String jdbcDriver = "org.apache.derby.jdbc.ClientDriver";
-        String databaseUri = "jdbc:derby://localhost:1527/C:/JavaDev/Databases/MyDatabase";
-
-        if (args.length == 2) {
-            jdbcDriver = args[0];
-            databaseUri = args[1];
-        }
+        String jdbcDriver = "com.mysql.jdbc.Driver";
+        String databaseUri = "jdbc:mysql://localhost:8889/javaDemoDB?"
+							+ "user=root&password=root";
+        
 
         // Load JDBC driver.
         try {
