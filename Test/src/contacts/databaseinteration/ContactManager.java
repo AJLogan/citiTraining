@@ -170,7 +170,7 @@ public class ContactManager {
 			System.out.println("Are you sure you would like to delete "
 					+ victim);
 			System.out.println("Enter Y or N");
-			String response = sc.next();
+			String response = sc.nextLine();
 
 			if (response.equals("Y") | response.equals("y")) {
 				String deleteContactQuery = "DELETE from contact where contact_id = "
@@ -182,7 +182,8 @@ public class ContactManager {
 			if (response.equals("N") | response.equals("n")) {
 				System.out.println("Contact: " + victim
 						+ " has not been deleted.");
-			} else {
+			} 
+			else {
 				System.out.println("Invalid Entry on Keyboard");
 			}
 
