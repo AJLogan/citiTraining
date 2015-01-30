@@ -34,6 +34,7 @@ public class CountryUI {
 		String capital = sc.nextLine();
 		System.out.println("Enter Population: ");
 		long population = sc.nextLong();
+		sc.close();
 
 		try {
 			Country country = new Country(0, name, capital, population);

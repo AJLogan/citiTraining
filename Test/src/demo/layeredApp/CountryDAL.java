@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import contacts.databaseinteration.DatabaseUtils;
 
 public class CountryDAL {
 	// Data Access Layer
@@ -83,12 +86,34 @@ public class CountryDAL {
 	// TODO IMPLEMENT UPDATE AND DELETE
 
 	// // UPDATE
-	// private static void editCountry(Country c) {
-	//
-	// }
+	static boolean editPopulation(Country c) throws SQLException {
+		boolean ret = true;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("What country do you want to update?: ");
+		String countryInQuestion = sc.next();
+
+		System.out
+				.println("Enter the new information for " + countryInQuestion);
+		System.out.println("Enter New Population: ");
+		long population = sc.nextLong();
+
+		String updatePopulationQuery = "UPDATE country "
+				+ "set population = ? " + "WHERE name like '"
+				+ countryInQuestion + "';";
+
+		Connection cn = setDBConnection();
+		try {
+			PreparedStatement ps = cn.prepareStatement(updatePopulationQuery);
+			ps.setLong(0, population);
+			ret = ps.execute();
+			return ret;
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
 	//
 	// // DELETE
-	// private static void deleteCountry(Country c) {
+	// static void deleteCountry(Country c) {
 	//
 	// }
 }
