@@ -1,7 +1,9 @@
 package contacts.databaseinteration;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,4 +43,22 @@ public class DatabaseUtils {
 		Statement st = cn.createStatement();
 		st.executeUpdate(query);
 	};
+	
+	public static void executePreparedStatement(Connection cn, String query, String[] accounts)
+			throws SQLException {
+		PreparedStatement ps = cn.prepareStatement(query) ;
+		for (int i = 0; i < accounts.length; i ++){
+			ps.setString(i, accounts.toString());
+		}
+		ps.executeUpdate(query);
+	}
+	public static ResultSet executeStoredProc(Connection cn, String query, String param)
+			throws SQLException {
+		CallableStatement st = cn.prepareCall(query);
+		st.setString(1, param);
+		ResultSet rs  =	st.executeQuery();
+		return rs;
+	}
+
+
 }
