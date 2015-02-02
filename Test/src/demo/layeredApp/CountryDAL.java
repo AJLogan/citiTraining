@@ -120,21 +120,18 @@ public class CountryDAL {
 		}
 	}
 
-	// TODO IMPLEMENT UPDATE AND DELETE
-
-	// // UPDATE
+	// UPDATE
 	static boolean editName(Country c) throws SQLException {
 		boolean ret = true;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter New Name: ");
 		String newName = sc.next();
 
-		String updateNameQuery = "UPDATE country "
-				+ "SET country_id = " + c.getId() + ", "
-				+ "name = '" + newName + "', "
-				+ "capital = '" + c.getCapital() + "', "
-				+ "population = " + c.getPopulation() + " "
-				+ "WHERE country_id = " + c.getId() + ";";
+		String updateNameQuery = "UPDATE country " + "SET country_id = "
+				+ c.getId() + ", " + "name = '" + newName + "', "
+				+ "capital = '" + c.getCapital() + "', " + "population = "
+				+ c.getPopulation() + " " + "WHERE country_id = " + c.getId()
+				+ ";";
 
 		Connection cn = setDBConnection();
 		try {
@@ -152,12 +149,11 @@ public class CountryDAL {
 		System.out.println("Enter New Name: ");
 		String newCapital = sc.next();
 
-		String updateCapitalQuery = "UPDATE country "
-				+ "SET country_id = " + c.getId() + ", "
-				+ "name = '" + c.getName() + "', "
-				+ "capital = '" + newCapital + "', "
-				+ "population = " + c.getPopulation() + " "
-				+ "WHERE country_id = " + c.getId() + ";";
+		String updateCapitalQuery = "UPDATE country " + "SET country_id = "
+				+ c.getId() + ", " + "name = '" + c.getName() + "', "
+				+ "capital = '" + newCapital + "', " + "population = "
+				+ c.getPopulation() + " " + "WHERE country_id = " + c.getId()
+				+ ";";
 
 		Connection cn = setDBConnection();
 		try {
@@ -175,12 +171,10 @@ public class CountryDAL {
 		System.out.println("Enter New Population: ");
 		long newPopulation = sc.nextLong();
 
-		String updatePopulationQuery =  "UPDATE country "
-				+ "SET country_id = " + c.getId() + ", "
-				+ "name = '" + c.getName() + "', "
-				+ "capital = '" + c.getCapital() + "', "
-				+ "population = " + newPopulation + " "
-				+ "WHERE country_id = " + c.getId() + ";";
+		String updatePopulationQuery = "UPDATE country " + "SET country_id = "
+				+ c.getId() + ", " + "name = '" + c.getName() + "', "
+				+ "capital = '" + c.getCapital() + "', " + "population = "
+				+ newPopulation + " " + "WHERE country_id = " + c.getId() + ";";
 
 		Connection cn = setDBConnection();
 		try {
@@ -192,9 +186,20 @@ public class CountryDAL {
 		}
 	}
 
-	//
-	// // DELETE
-	// static void deleteCountry(Country c) {
-	//
-	// }
+	// DELETE
+	static boolean deleteCountry(Country c) throws SQLException {
+		boolean ret = true;
+
+		String deleteCountry = "DELETE FROM Country WHERE country_id = "
+				+ c.getId() + ";";
+
+		Connection cn = setDBConnection();
+		try {
+			PreparedStatement ps = cn.prepareStatement(deleteCountry);
+			ret = ps.execute();
+			return ret;
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
 }

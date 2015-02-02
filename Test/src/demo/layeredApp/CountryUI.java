@@ -12,7 +12,9 @@ public class CountryUI {
 		// allCountries();
 		editCountry();
 		allCountries();
-		
+		deleteCountry();
+		allCountries();
+	
 	}
 
 	public static void allCountries() {
@@ -91,6 +93,32 @@ public class CountryUI {
 
 			}
 
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public static void deleteCountry() throws SQLException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Which Country would you like to delete?");
+		String name = sc.nextLine();
+		try {
+			CountryBL bl = new CountryBL();
+			Country c = bl.getCountryByName(name);
+			if (c != null) {
+				System.out.println("Are you sure (Y/N");
+				String confirmation = sc.nextLine();
+				if (confirmation.equals("Y") | confirmation.equals("y")){
+					bl.deleteCountry(c);
+				}
+				else {
+					System.out.println("Canceled");
+				}
+			} else {
+				System.out.println("No Country with that name");
+
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

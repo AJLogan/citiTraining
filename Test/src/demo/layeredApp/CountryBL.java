@@ -12,7 +12,7 @@ public class CountryBL {
 	public Country getCountryByID(int id) throws SQLException {
 		return CountryDAL.getCountryByID(id);
 	}
-	
+
 	public Country getCountryByName(String name) throws SQLException {
 		return CountryDAL.getCountryByName(name);
 	}
@@ -20,16 +20,20 @@ public class CountryBL {
 	public int addCountry(Country c) throws SQLException {
 		return CountryDAL.addCountry(c);
 	}
-	
+
 	public boolean editName(Country c) throws SQLException {
 		return CountryDAL.editName(c);
 	}
-	
+
 	public boolean editCapital(Country c) throws SQLException {
 		return CountryDAL.editCapital(c);
 	}
 
 	public boolean editPopulation(Country c) throws SQLException {
 		return CountryDAL.editPopulation(c);
+	}
+
+	public boolean deleteCountry(Country c) throws SQLException {
+		return CountryDAL.deleteCountry(c);
 	}
 }
