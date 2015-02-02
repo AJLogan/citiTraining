@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 public class CountryUI {
 	// UI Layer
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		 allCountries();
+		// addCountry();
+		// allCountries();
+		editCountry();
 		allCountries();
-		addCountry();
-		allCountries();
+		
 	}
 
 	public static void allCountries() {
@@ -40,6 +43,54 @@ public class CountryUI {
 			Country country = new Country(0, name, capital, population);
 			CountryBL bl = new CountryBL();
 			bl.addCountry(country);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void editCountry() throws SQLException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Which Country would you like to edit?");
+		String name = sc.nextLine();
+		try {
+			CountryBL bl = new CountryBL();
+			Country c = bl.getCountryByName(name);
+			if (c != null) {
+				System.out.println("Current Information: ");
+				System.out.println("Name: " + c.getName());
+				System.out.println("Capital: " + c.getCapital());
+				System.out.println("Population: " + c.getPopulation());
+
+				System.out.println("Which data would you like to edit?");
+				System.out.println("(N)ame, (C)apital, (P)opulation");
+				String param = sc.next();
+				System.out.println(param);
+				if (param.equals("N") | param.equals("n")) {
+					try {
+						bl.editName(c);
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
+				} else if (param.equals("C") | param.equals("c")) {
+					try {
+						bl.editCapital(c);
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
+				} else if (param.equals("P") | param.equals("p")) {
+					try {
+						bl.editPopulation(c);
+					} catch (SQLException e) {
+						System.out.println(e.getMessage());
+					}
+				} else {
+					System.out.println("Invalid Entry");
+				}
+			} else {
+				System.out.println("No Country with that name");
+
+			}
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
