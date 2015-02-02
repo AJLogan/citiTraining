@@ -34,6 +34,7 @@ public class CountryBL {
 	}
 
 	public boolean deleteCountry(Country c) throws SQLException {
+//		This will not work if there are contacts associated with a country
 		return CountryDAL.deleteCountry(c);
 	}
 }
