@@ -20,7 +20,7 @@ public class DataAccess {
 	/*
 	 * Database Connection Parameters
 	 */
-	// THIS WILL BE DIFFERENT CONNECTION THAT ON THE VIRTUAL MACHINE
+	// THIS WILL BE DIFFERENT CONNECTION THAN ON THE VIRTUAL MACHINE
 	private static String strConn = "jdbc:mysql://localhost:8889/classfiles?user=root&password=root";
 	private static String strDriver = "com.mysql.jdbc.Driver";
 
@@ -86,6 +86,7 @@ public class DataAccess {
 
 	private static String setFileLocation() throws IOException {
 		Scanner sc = new Scanner(System.in);
+//		THIS WILL BE DIFFERENT DEPENDING ON OPERATING SYSTEM
 		String path = "/users/andrew/citi/";
 		System.out.println("Enter a filename: ");
 		String filename = sc.nextLine();
@@ -96,7 +97,12 @@ public class DataAccess {
 	static List<IBM> getReport1aData() throws SQLException {
 		List<IBM> data = new ArrayList<IBM>();
 
-		String getData = "select tdate, ttime, min(openpr) as openpr, highpr, max(closepr) as closepr, lowpr, volume, abs(min(openpr) - max(closepr)) as trade_range from ibm_data group by tdate order by trade_range desc limit 1;";
+		String getData = "select "
+				+ "tdate, ttime, min(openpr) as openpr, highpr, max(closepr) as closepr, lowpr, volume, abs(min(openpr) - max(closepr)) as trade_range "
+				+ "from ibm_data "
+				+ "group by tdate "
+				+ "order by trade_range desc "
+				+ "limit 1;";
 
 		Connection cn = setDBConnection();
 		try {
