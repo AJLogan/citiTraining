@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Add Country</h2>
+	<h3>Enter the country details</h3>
+	<form action="Countries.jsp" method="post">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" id="name" /></td>
+			</tr>
+			<tr>
+				<td>Capital</td>
+				<td><input type="text" name="capital" id="cap" /></td>
+			</tr>
+			<tr>
+				<td>Population</td>
+				<td><input type="text" name="population" id="pop" /></td>
+			</tr>
+		</table>
+		<button type="submit" class="btn btn-sm btn-success" name="add" id="add">Add</button>
+	</form>
+</body>
+</html>
