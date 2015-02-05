@@ -10,13 +10,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Choose a category</h3>
-	<form action="ListProducts.jsp" method=post>
-		<div class="form-group">
-			<label for="category">Select a category:</label> 
-			<select class="form-control" name="category" id="category">
-				<option selected value="-1">Choose a category</option>
-				<%
+	<h3>Product List for category: <%= request.getParameter("category") %></h3>
+	<a href="CategoryQuery.jsp">Select Category</a>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Price ($)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%
+				if (request.getParameter("category") != null) {
 					// Load JDBC Driver
 					try {
 						Class.forName("com.mysql.jdbc.Driver");
@@ -33,24 +38,23 @@
 					}
 					Statement st;
 					try {
+						String option = request.getParameter("category");
+						String query = "select product_id, description, price from product where product_category_code = '"
+								+ option + "';";
 						st = cn.createStatement();
-						ResultSet rs = st
-								.executeQuery("SELECT product_category_name, product_category_code"
-										+ " FROM product_category");
+						ResultSet rs = st.executeQuery(query);
 						while (rs.next()) {
-							out.println("<option value='" + rs.getString(2) + "'>"
-									+ rs.getString(1) + "</ option>");
+							out.print("<tr><td><a href ='ProductOrders.jsp?product="
+									+ rs.getString("product_id") + "'>" + rs.getString("description")+ "</a></td>");
+							out.print("<td>" + rs.getString("price") + "</td></tr>");
+
 						}
 					} catch (SQLException e) {
 						out.println("Error connecting to a database: " + e);
 					}
-				%>
-			</select>
-		</div>
-		<div>
-			<button type="submit" class="btn btn-sm btn-success"
-				name="listProducts" id="listProducts">List Products</button>
-		</div>
-	</form>
+				}
+			%>
+		</tbody>
+	</table>
 </body>
 </html>
