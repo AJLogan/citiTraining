@@ -10,8 +10,10 @@ public class UserInterface {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Andrew's Console App.");
-		System.out.println("Database Configuration is set at top of DataAccess.java");
-		System.out.println("File output path is set in setFileLocation() in DataAccess.java");
+		System.out
+				.println("Database Configuration is set at top of DataAccess.java");
+		System.out
+				.println("File output path is set in setFileLocation() in DataAccess.java");
 		System.out.println("");
 		runMenu();
 	}
