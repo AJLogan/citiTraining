@@ -8,7 +8,7 @@
 	type="text/css" />
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Countries</title>
 </head>
 <body>
 	<!-- Using this as a bit of a controller.... if the paramater matches up then do the appropriate thing then display a list -->
@@ -34,6 +34,7 @@
 						.getParameter("id")), request.getParameter("name"),
 						request.getParameter("capital"),
 						Long.parseLong(request.getParameter("population")));
+				session.setAttribute("country", c.getName());
 				CountryBL bl = new CountryBL();
 				bl.editCountry(c);
 			} catch (SQLException e) {
@@ -59,6 +60,7 @@
 	%>
 
 	<h2>Country List</h2>
+	<a href="StateDemo.jsp">Session Demo</a>
 	<h6>Click on the Country Name to edit details</h6>
 	<table border="1">
 		<tr>
@@ -71,13 +73,24 @@
 			try {
 				CountryBL bl = new CountryBL();
 				countries = bl.getCountries();
+				session.setAttribute("allCountries", countries);
 				for (Country c : countries) {
+					if (session.getAttribute("country") != null && session.getAttribute("country").equals(c.getName())){
 					out.print("<tr>");
-					out.print("<td><a href ='EditCountry.jsp?id=" + c.getId()
+					out.print("<td>UPDATED: <a href ='EditCountry.jsp?id=" + c.getId()
 							+ "' >" + c.getName() + "</a></td>");
 					out.print("<td>" + c.getCapital() + "</td>");
 					out.print("<td>" + c.getPopulation() + "</td>");
 					out.print("</tr>");
+					}
+					else {
+						out.print("<tr>");
+						out.print("<td><a href ='EditCountry.jsp?id=" + c.getId()
+								+ "' >" + c.getName() + "</a></td>");
+						out.print("<td>" + c.getCapital() + "</td>");
+						out.print("<td>" + c.getPopulation() + "</td>");
+						out.print("</tr>");
+					}
 				}
 			} catch (SQLException e) {
 				out.println(e.getMessage());
