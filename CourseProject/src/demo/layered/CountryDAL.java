@@ -82,17 +82,20 @@ public class CountryDAL {
 	}
 
 	static Country getCountryByID(int id) throws SQLException {
-		String getCountry = "SELECT country_id, name, capital, population FROM COUNTRY where country_id = "
-				+ id + ";";
+		Country country = null;
+		String getCountry = "SELECT country_id, name, capital, population FROM COUNTRY where country_id = '"
+				+ id + "';";
 		Connection cn = setDBConnection();
 		try {
 			Statement st = cn.createStatement();
 			ResultSet rs = st.executeQuery(getCountry);
-			int country_id = rs.getInt("country_id");
-			String name = rs.getString("name");
-			String capital = rs.getString("capital");
-			Long population = rs.getLong("population");
-			Country country = new Country(country_id, name, capital, population);
+			if (rs.next()) {
+				int country_id = rs.getInt("country_id");
+				String name = rs.getString("name");
+				String capital = rs.getString("capital");
+				Long population = rs.getLong("population");
+				country = new Country(country_id, name, capital, population);
+			}
 			return country;
 		} catch (SQLException e) {
 			throw e;
@@ -179,6 +182,23 @@ public class CountryDAL {
 		Connection cn = setDBConnection();
 		try {
 			PreparedStatement ps = cn.prepareStatement(updatePopulationQuery);
+			ret = ps.execute();
+			return ret;
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
+	
+	static boolean editCountry(Country c) throws SQLException {
+		boolean ret = true;
+		String updateCountryQuery = "UPDATE country " + "SET country_id = "
+				+ c.getId() + ", " + "name = '" + c.getName() + "', "
+				+ "capital = '" + c.getCapital() + "', " + "population = "
+				+ c.getPopulation() + " " + "WHERE country_id = " + c.getId() + ";";
+
+		Connection cn = setDBConnection();
+		try {
+			PreparedStatement ps = cn.prepareStatement(updateCountryQuery);
 			ret = ps.execute();
 			return ret;
 		} catch (SQLException e) {

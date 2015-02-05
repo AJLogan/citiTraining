@@ -32,6 +32,10 @@ public class CountryBL {
 	public boolean editPopulation(Country c) throws SQLException {
 		return CountryDAL.editPopulation(c);
 	}
+	
+	public boolean editCountry(Country c) throws SQLException {
+		return CountryDAL.editCountry(c);
+	}
 
 	public boolean deleteCountry(Country c) throws SQLException {
 //		This will not work if there are contacts associated with a country

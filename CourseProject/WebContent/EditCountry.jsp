@@ -6,35 +6,47 @@
 <head>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Edit Country</title>
 </head>
 <body>
+	<h2>Edit Country</h2>
 	<%
+		Country c = null;
 		if (request.getParameter("id") != null) {
 			try {
-				int id = Integer.getInteger(request.getParameter("id"));
 				CountryBL bl = new CountryBL();
-				bl.getCountryByID(id);
-
+				c = bl.getCountryByID(Integer.parseInt(request
+						.getParameter("id")));
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
-
 			}
 		}
 	%>
-	<table>
-		<tr>
-			<th>
-			<td>
-			</td>
-			</th>
-		</tr>
-
-		<tr>
-			<td></td>
-		</tr>
-	</table>
+	<form action="Countries.jsp" method="post">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" id="name"
+					value="<%=c.getName()%>" /></td>
+			</tr>
+			<tr>
+				<td>Capital</td>
+				<td><input type="text" name="capital" id="cap"
+					value="<%=c.getCapital()%>" /></td>
+			</tr>
+			<tr>
+				<td>Population</td>
+				<td><input type="text" name="population" id="pop"
+					value="<%=c.getPopulation()%>" /> <input type="hidden" name="id"
+					id="id" value="<%=c.getId()%>" /></td>
+			</tr>
+		</table>
+		<button type="submit" class="btn btn-sm btn-success" name="edit"
+			id="edit">Edit</button>
+		<button type="submit" class="btn btn-sm btn-danger" name="delete"
+			id="delete">Delete</button>
+	</form>
 </body>
 </html>
