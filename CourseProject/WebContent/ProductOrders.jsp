@@ -10,6 +10,7 @@
 <title>Orders</title>
 </head>
 <body>
+<a href="Index.html">Home</a>
 	<h3>Orders for: <%=request.getParameter("product")%></h3>
 	<table class="table table-hover">
 		<thead>

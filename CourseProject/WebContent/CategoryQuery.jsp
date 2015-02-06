@@ -13,8 +13,8 @@
 	<h3>Choose a category</h3>
 	<form action="ListProducts.jsp" method=post>
 		<div class="form-group">
-			<label for="category">Select a category:</label> 
-			<select class="form-control" name="category" id="category">
+			<label for="category">Select a category:</label> <select
+				class="form-control" name="category" id="category">
 				<option selected value="-1">Choose a category</option>
 				<%
 					// Load JDBC Driver

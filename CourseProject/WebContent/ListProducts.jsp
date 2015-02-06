@@ -45,6 +45,7 @@
 						ResultSet rs = st.executeQuery(query);
 						while (rs.next()) {
 							out.print("<tr><td><a href ='ProductOrders.jsp?product="
+									/* out.print("<tr><td><a href ='BootstrapDemo.jsp?product="  */
 									+ rs.getString("product_id") + "'>" + rs.getString("description")+ "</a></td>");
 							out.print("<td>" + rs.getString("price") + "</td></tr>");
 
