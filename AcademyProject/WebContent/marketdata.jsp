@@ -35,8 +35,8 @@
 						<div class="table-responsive">
 							<form>
 								<div class="form-group">
-								<br>
-									<select class="form-control" name="ticker" id="ticker">
+									<br> <select class="form-control" name="ticker"
+										id="ticker">
 										<option selected value="">Choose a ticker</option>
 										<%
 											// Load JDBC Driver
